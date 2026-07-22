@@ -5,14 +5,16 @@ public class EmployeeDemo {
     Scanner scanner=new Scanner(System.in);
     System.out.println("enter the number of employees");
     int no = scanner.nextInt();
+    scanner.nextLine();
     Employee employees[] = new Employee[no];
     for(int i = 0; i<no; i++){
         System.out.println("enter the name,id,department");
         
-        String name = scanner.next();
+        String name = scanner.nextLine();
         int id = scanner.nextInt();
         double dept = scanner.nextDouble();
         employees[i]= new Employee(name, id, dept);
+        scanner.nextLine();
     }
 
     System.out.println("The employees list: ");
