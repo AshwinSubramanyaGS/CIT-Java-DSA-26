@@ -24,6 +24,7 @@ public class ArrayListDemo {
        for (Integer integer : listOfIntegers) {
         System.out.print(integer + " ");
        }
+       sc.close();
 
     }    
 }
