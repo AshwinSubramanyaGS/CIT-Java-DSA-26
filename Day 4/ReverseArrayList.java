@@ -1,21 +1,21 @@
+//Reverse a List – Reverse the elements of a given `List<String>` in‑place (without creating a new list).
+//package Day 4;
 
-// Remove Duplicates – Write a method that takes a `List<Integer>` and returns a new list with all duplicates removed, preserving the original order.
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.ArrayList;
 
-class RemoveDuplicates {
-    static List<Integer> deDeuplicator(List<Integer> integerList) {
-        List<Integer> newIntegerList = new ArrayList<Integer>();
+public class ReverseArrayList {
 
-        for (Integer integer : integerList) {
-            if (!newIntegerList.contains(integer))
-                newIntegerList.add(integer);
+    static void listReverser(List<Integer> list){
+        int size = list.size()-1;
+        for (int i = 0; i <= size/2; i++) {
+            int temp=list.get(i);
+            list.set(i, list.get(size-i));
+            list.set(size-i, temp);
         }
-        return newIntegerList;
     }
-
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean choice = true;
         List<Integer> listOfIntegers = new ArrayList<>();
@@ -30,9 +30,8 @@ class RemoveDuplicates {
             }
         }
         System.out.println("Original List" + listOfIntegers);
-
-        System.out.println("De Duplicated List" + deDeuplicator(listOfIntegers));
-
+        listReverser(listOfIntegers);
+        System.out.println("De Duplicated List" + listOfIntegers);
         sc.close();
 
     }
