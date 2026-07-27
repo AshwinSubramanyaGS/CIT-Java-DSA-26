@@ -1,0 +1,19 @@
+public static void levelOrder(Node root) {
+        List<List<Integer>> map =new ArrayList<>();
+        traversal(root,0,map);
+        for(List<Integer> i:map){
+            for(Integer j:i){
+                System.out.print(j+" ");
+            }
+        }
+      
+    }
+    public static void traversal(Node root,int level,List<List<Integer>> map ){
+        if(root == null) return;
+        if(level==map.size()){
+          map.add(new ArrayList<Integer>());  
+        } 
+        map.get(level).add(root.data);
+        traversal(root.left,level+1,map);
+        traversal(root.right,level+1,map);
+    }
