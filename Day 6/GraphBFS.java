@@ -62,10 +62,12 @@ public class GraphBFS {
 
         graph.addEdge(0,1);
         graph.addEdge(0,2);
-        graph.addEdge(0,3);
+        graph.addEdge(1,3);
         graph.addEdge(1,4);
-        graph.addEdge(1,5);
-        graph.addEdge(3,6);
+        graph.addEdge(2,4);
+        graph.addEdge(3,5);
+        graph.addEdge(4,5);
+        graph.addEdge(4,6);
 
         graph.bfs(0);
 
