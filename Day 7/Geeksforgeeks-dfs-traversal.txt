@@ -1,0 +1,24 @@
+class Solution {
+    private ArrayList<ArrayList<Integer>> adj;
+    private ArrayList<Integer> finalList;
+    public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
+        boolean[] visited = new boolean[adj.size()];
+        this.adj=adj;
+        finalList = new ArrayList<>();
+        dfsUtil(0, visited);
+        return finalList;
+    }
+    
+    
+    
+
+    private void dfsUtil(int current, boolean[] visited) {
+        visited[current] = true;
+        finalList.add(current);
+        for (int neighbor : adj.get(current)) {
+            if (!visited[neighbor]) {
+                dfsUtil(neighbor, visited);
+            }
+        }
+    }
+}
