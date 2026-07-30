@@ -1,0 +1,39 @@
+import java.util.HashMap;
+
+class Solution {
+
+    private HashMap<Node, Node> visited;
+
+    public Node cloneGraph(Node node) {
+
+        if (node == null) {
+            return null;
+        }
+
+        visited = new HashMap<>();
+
+        return dfs(node);
+
+    }
+
+    private Node dfs(Node current) {
+
+        if (visited.containsKey(current)) {
+            return visited.get(current);
+        }
+
+        Node cloneNode = new Node(current.val);
+
+        visited.put(current, cloneNode);
+
+        for (Node neighbor : current.neighbors) {
+
+            cloneNode.neighbors.add(dfs(neighbor));
+
+        }
+
+        return cloneNode;
+
+    }
+
+}
