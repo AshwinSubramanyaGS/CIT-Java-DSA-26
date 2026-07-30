@@ -33,11 +33,8 @@ class Solution {
                 }
 
                 visited.get(current).neighbors.add(visited.get(neighbor));
-
             }
-
         }
-
         return visited.get(node);
 
     }

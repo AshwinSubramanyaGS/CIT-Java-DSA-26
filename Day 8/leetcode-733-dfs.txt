@@ -1,0 +1,45 @@
+class Solution {
+
+    private int rows;
+    private int cols;
+    private int originalColor;
+    private int newColor;
+
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+
+        rows = image.length;
+        cols = image[0].length;
+
+        originalColor = image[sr][sc];
+        newColor = color;
+
+        if (originalColor == newColor) {
+            return image;
+        }
+
+        dfs(image, sr, sc);
+
+        return image;
+
+    }
+
+    private void dfs(int[][] image, int row, int col) {
+
+        if (row < 0 || row >= rows || col < 0 || col >= cols) {
+            return;
+        }
+
+        if (image[row][col] != originalColor) {
+            return;
+        }
+
+        image[row][col] = newColor;
+
+        dfs(image, row - 1, col); // Up
+        dfs(image, row + 1, col); // Down
+        dfs(image, row, col - 1); // Left
+        dfs(image, row, col + 1); // Right
+
+    }
+
+}
