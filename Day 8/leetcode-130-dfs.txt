@@ -1,0 +1,92 @@
+class Solution {
+
+    private int rows;
+    private int cols;
+
+    public void solve(char[][] board) {
+
+        rows = board.length;
+
+        if (rows == 0) {
+            return;
+        }
+
+        cols = board[0].length;
+
+        // First Row
+        for (int col = 0; col < cols; col++) {
+
+            if (board[0][col] == 'O') {
+                dfs(board, 0, col);
+            }
+
+        }
+
+        // Last Row
+        for (int col = 0; col < cols; col++) {
+
+            if (board[rows - 1][col] == 'O') {
+                dfs(board, rows - 1, col);
+            }
+
+        }
+
+        // First Column
+        for (int row = 0; row < rows; row++) {
+
+            if (board[row][0] == 'O') {
+                dfs(board, row, 0);
+            }
+
+        }
+
+        // Last Column
+        for (int row = 0; row < rows; row++) {
+
+            if (board[row][cols - 1] == 'O') {
+                dfs(board, row, cols - 1);
+            }
+
+        }
+
+        // Convert cells
+        for (int row = 0; row < rows; row++) {
+
+            for (int col = 0; col < cols; col++) {
+
+                if (board[row][col] == 'O') {
+
+                    board[row][col] = 'X';
+
+                } else if (board[row][col] == '#') {
+
+                    board[row][col] = 'O';
+
+                }
+
+            }
+
+        }
+
+    }
+
+    private void dfs(char[][] board, int row, int col) {
+
+        if (row < 0 || row >= rows || col < 0 || col >= cols) {
+            return;
+        }
+
+        if (board[row][col] != 'O') {
+            return;
+        }
+
+        board[row][col] = '#';
+
+        dfs(board, row - 1, col);
+        dfs(board, row + 1, col);
+        dfs(board, row, col - 1);
+        dfs(board, row, col + 1);
+
+    }
+
+}

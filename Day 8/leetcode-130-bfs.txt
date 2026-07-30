@@ -1,0 +1,118 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Solution {
+
+    private int rows;
+    private int cols;
+
+    public void solve(char[][] board) {
+
+        rows = board.length;
+
+        if (rows == 0) {
+            return;
+        }
+
+        cols = board[0].length;
+
+        // First Row
+        for (int col = 0; col < cols; col++) {
+
+            if (board[0][col] == 'O') {
+                bfs(board, 0, col);
+            }
+
+        }
+
+        // Last Row
+        for (int col = 0; col < cols; col++) {
+
+            if (board[rows - 1][col] == 'O') {
+                bfs(board, rows - 1, col);
+            }
+
+        }
+
+        // First Column
+        for (int row = 0; row < rows; row++) {
+
+            if (board[row][0] == 'O') {
+                bfs(board, row, 0);
+            }
+
+        }
+
+        // Last Column
+        for (int row = 0; row < rows; row++) {
+
+            if (board[row][cols - 1] == 'O') {
+                bfs(board, row, cols - 1);
+            }
+
+        }
+
+        for (int row = 0; row < rows; row++) {
+
+            for (int col = 0; col < cols; col++) {
+
+                if (board[row][col] == 'O') {
+
+                    board[row][col] = 'X';
+
+                } else if (board[row][col] == '#') {
+
+                    board[row][col] = 'O';
+
+                }
+
+            }
+
+        }
+
+    }
+
+    private void bfs(char[][] board, int row, int col) {
+
+        Queue<int[]> queue = new LinkedList<>();
+
+        queue.offer(new int[] { row, col });
+
+        board[row][col] = '#';
+
+        int[][] directions = {
+                { -1, 0 },
+                { 1, 0 },
+                { 0, -1 },
+                { 0, 1 }
+        };
+
+        while (!queue.isEmpty()) {
+
+            int[] current = queue.poll();
+
+            int currentRow = current[0];
+            int currentCol = current[1];
+
+            for (int[] direction : directions) {
+
+                int nextRow = currentRow + direction[0];
+                int nextCol = currentCol + direction[1];
+
+                if (nextRow >= 0 && nextRow < rows &&
+                    nextCol >= 0 && nextCol < cols &&
+                    board[nextRow][nextCol] == 'O') {
+
+                    board[nextRow][nextCol] = '#';
+
+                    queue.offer(new int[] { nextRow, nextCol });
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
